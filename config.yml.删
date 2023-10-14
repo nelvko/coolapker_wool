@@ -1,0 +1,13 @@
+bark:
+  key: 
+  title: wool
+  icon: 
+
+filter:
+  interval_minute: 5
+  diy_replynum: 10
+
+req_headers:
+  X-App-Token: 
+  X-App-Device: 
+  Cookie: 
