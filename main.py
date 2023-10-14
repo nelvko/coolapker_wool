@@ -59,7 +59,7 @@ def is_popular(create_time, lastupdate, replynum) -> bool:
             return True
 
 
-def bark(message: str, url):
+def push_bark(message: str, url):
     message = re.sub(r'<a.*>.*</a>', '', message)
     message = re.sub(r'\n', '', message)
     message = re.sub(r'\[.*]', '', message)  # [受虐滑稽]
@@ -92,7 +92,7 @@ def extract_and_bark(data_arr):
             continue
         if is_popular(create_time, lastupdate, replynum):
             if id not in history_set:
-                bark(message, shareUrl)
+                push_bark(message, shareUrl)
                 history_set.add(id)
     print(f"log_info->空内容数量：{none_num}")
 
@@ -103,4 +103,7 @@ if __name__ == '__main__':
         print(f"log_error->本次响应状态码{res.status_code}")
         sys.exit(1)
     data_arr = res.json().get("data")
+    if data_arr is None:
+        print(f"log_error->返回空data")
+        sys.exit(1)
     extract_and_bark(data_arr)
