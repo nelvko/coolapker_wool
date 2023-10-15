@@ -1,13 +1,14 @@
 bark:
-  key: 
+  key:
   title: wool
-  icon: 
+  icon:
+  url: tencent100336226://
 
 filter:
   interval_minute: 5
   diy_replynum: 10
 
 req_headers:
-  X-App-Token: 
-  X-App-Device: 
-  Cookie: 
+  X-App-Token:
+  X-App-Device:
+  Cookie:

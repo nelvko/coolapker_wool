@@ -13,6 +13,7 @@ interval_minute = c.get("filter").get("interval_minute") * 60
 diy_replynum = c.get("filter").get("diy_replynum")
 bark = c.get('bark')
 bark_key = bark.get("key")
+url_scheme = bark.get("url")
 
 none_num = 0
 now = time.time()
@@ -62,14 +63,14 @@ def is_popular(create_time, lastupdate, replynum) -> bool:
 def push_bark(message: str, url):
     message = re.sub(r'<a.*>.*</a>', '', message)
     message = re.sub(r'\n', '', message)
-    message = re.sub(r'\[.*]', '', message)  # [受虐滑稽]
+    message = re.sub(r'\[.*?]', '', message)  # [受虐滑稽]
     message = message.strip()
     bark_body = {
         "title": bark.get("title"),
         "body": message,
         # "group": "分组1",
         "icon": bark.get("icon"),
-        "url": url,
+        "url": url_scheme,
         "copy": url
     }
     bark_url = f"https://api.day.app/{bark_key}"
